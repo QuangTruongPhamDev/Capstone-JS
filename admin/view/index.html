@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Phone</title>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-gray-800 text-white">
+      <div class="mx-20 px-4 py-3 flex justify-between items-center">
+        <div class="text-3xl font-bold">
+          <i class="fab fa-github-alt"></i>
+          Cyber Shop
+        </div>
+        <nav>
+          <ul class="flex mx-auto space-x-4 text-lg">
+            <li>
+              <a
+                href="#"
+                class="hover:text-gray-300 flex flex-col items-center"
+              >
+                <i class="fa fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-gray-300 flex flex-col items-center"
+              >
+                <i class="fa fa-store"></i>
+                <span>Store</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="hover:text-gray-300 flex flex-col items-center"
+              >
+                <i class="fa fa-shopping-cart"></i>
+                <span>Cart</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main -->
+
+    <main class="container mx-auto px-4 py-6">
+      <div class="bg-white shadow-md rounded-lg p-4 mx-20">
+        <div class="flex justify-between items-center mb-4">
+          <h1 class="text-xl font-semibold text-gray-700">Phone Management</h1>
+          <!-- Button Thêm mới -->
+          <button
+            data-modal-toggle="modal"
+            data-modal-target="modal"
+            id="openModalBtn"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            + Thêm mới
+          </button>
+        </div>
+        <!-- TABLE -->
+        <table class="table-auto w-full border-collapse border border-gray-200">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-200 px-4 py-2">#</th>
+              <th class="border border-gray-200 px-4 py-2">Tên Sản Phẩm</th>
+              <th class="border border-gray-200 px-4 py-2">Giá</th>
+              <th class="border border-gray-200 px-4 py-2">Hình Ảnh</th>
+              <th class="border border-gray-200 px-4 py-2">Mô tả</th>
+              <th class="border border-gray-200 px-4 py-2">Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody id="tblDanhSachSanPham">
+            <!-- Rows will be dynamically generated here -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- Modal -->
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+    >
+      <div class="bg-white p-8 rounded-lg w-96">
+        <h2 class="text-2xl mb-4">Thêm Sản Phẩm Mới</h2>
+        <form>
+          <!-- Tên sản phẩm -->
+          <div class="mb-4">
+            <label for="TenSP" class="block text-sm font-semibold"
+              >Tên sản phẩm</label
+            >
+            <input
+              id="TenSP"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+              placeholder="Nhập tên sản phẩm"
+              required
+            />
+          </div>
+
+          <!-- Giá -->
+          <div class="mb-4">
+            <label for="GiaSP" class="block text-sm font-semibold">Giá</label>
+            <input
+              id="GiaSP"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+              placeholder="Nhập giá sản phẩm"
+            />
+          </div>
+
+          <!-- Hình ảnh -->
+          <div class="mb-4">
+            <label for="HinhSP" class="block text-sm font-semibold"
+              >Hình ảnh</label
+            >
+            <input
+              id="HinhSP"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            />
+          </div>
+
+          <!-- Loại sản phẩm -->
+          <div class="mb-4">
+            <label for="loaiSP" class="block text-sm font-semibold"
+              >Loại sản phẩm</label
+            >
+            <select
+              id="loaiSP"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            >
+              <option value="Electronics">Điện tử</option>
+              <option value="Clothing">Thời trang</option>
+              <option value="Accessories">Phụ kiện</option>
+            </select>
+          </div>
+
+          <!-- Các nút -->
+          <div class="flex justify-between">
+            <button
+              id="closeModalBtn"
+              class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
+            >
+              Đóng
+            </button>
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+              onclick="createProduct()"
+            >
+              Thêm sản phẩm
+            </button>
+            <button
+              class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700"
+              onclick="updateProduct()"
+            >
+              Cập nhật
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+
+    <footer
+      class="bg-gradient-to-br from-blue-500 via-teal-500 to-green-500 text-white"
+    >
+      <div class="text-center text-lg py-2">
+        <p>Get connected with us on social networks:</p>
+        <div class="flex justify-center space-x-4 mt-2">
+          <a href="#" class="text-white hover:text-gray-300"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="text-white hover:text-gray-300"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="text-white hover:text-gray-300"
+            ><i class="fab fa-google"></i
+          ></a>
+          <a href="#" class="text-white hover:text-gray-300"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="text-white hover:text-gray-300"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="#" class="text-white hover:text-gray-300"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
+      </div>
+
+      <div
+        class="container mx-20 px-5 py-6 grid grid-cols-1 md:grid-cols-4 gap-4"
+      >
+        <div class="px-5">
+          <h3 class="text-lg font-semibold mb-2">
+            <i class="fab fa-github-alt"></i>
+            CYBER SHOP
+          </h3>
+          <p>
+            We pride ourselves on our efficiency and hard work, but most of all
+            our ability to source you the best quality and best value products
+            and devices in the market.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-2">BRANDS</h3>
+          <ul class="space-y-5">
+            <li><a href="#" class="hover:underline">iPhone</a></li>
+            <li><a href="#" class="hover:underline">Samsung</a></li>
+            <li><a href="#" class="hover:underline">Xiaomi</a></li>
+            <li><a href="#" class="hover:underline">Oppo</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-2">USEFUL LINKS</h3>
+          <ul class="space-y-5">
+            <li><a href="#" class="hover:underline">Pricing</a></li>
+            <li><a href="#" class="hover:underline">Settings</a></li>
+            <li><a href="#" class="hover:underline">Orders</a></li>
+            <li><a href="#" class="hover:underline">Help</a></li>
+          </ul>
+        </div>
+        <div class="px-5">
+          <h3 class="text-lg font-semibold mb-2">CONTACT</h3>
+          <ul class="space-y-5">
+            <li>Go Vap, TP.Ho Chi Minh, Viet Nam</li>
+            <li>cybershop@gmail.com</li>
+            <li>+01 234 5678</li>
+            <li>+34 675 988</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <p class="text-center py-2">
+          &copy; 2021 Cyber Shop. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Đóng / Mở Modal -->
+    <script>
+      // Mở modal
+      document
+        .getElementById("openModalBtn")
+        .addEventListener("click", function () {
+          document.getElementById("modal").classList.remove("hidden");
+        });
+
+      // Đóng modal
+      document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", function () {
+          document.getElementById("modal").classList.add("hidden");
+        });
+    </script>
+
+    <!-- cdn axios  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- controller -->
+    <script src="../controller/controller.js"></script>
+    <!-- my js -->
+    <script src="../controller/index.js"></script>
+  </body>
+</html>
