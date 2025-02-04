@@ -66,6 +66,7 @@ let editProduct = (id) => {
       showDataForm(product);
       // hiển thị modal
       document.getElementById("modal").classList.remove("hidden");
+      document.getElementById("btnThemSanPham").classList.add("hidden");
     })
     .catch((error) => {
       console.log("Lỗi: ", error);
@@ -86,6 +87,7 @@ let updateProduct = () => {
     .then((result) => {
       // Tắt modal
       document.getElementById("modal").classList.add("hidden");
+      document.getElementById("btnThemSanPham").classList.remove("hidden");
       // Gọi lại api lấy dữ liệu mới nhất từ server
       fetchProduct();
       console.log("Sửa sản phẩm thành công: ", result);

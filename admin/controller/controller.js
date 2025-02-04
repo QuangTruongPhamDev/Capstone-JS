@@ -11,7 +11,7 @@ let renderSanPham = (productArr) => {
                     <img src="${product.image}" alt="${product.productName}" width="200px" />
                 </td>
                 <td class="border border-gray-200 items-center">${product.desc}</td>
-                <td class="border border-gray-200 flex flex-col items-center">
+                <td class=" border-gray-200 flex flex-col items-center">
                     <button class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-700 m-2" onclick="editProduct('${product.id}')">Sửa</button>
                     <button class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 m-2" onclick="deleteProduct('${product.id}')">Xóa</button>
                 </td>

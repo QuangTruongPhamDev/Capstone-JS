@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cyber Phone</title>
+    <title>Cyber Shop</title>
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -66,8 +66,6 @@
           <h1 class="text-xl font-semibold text-gray-700">Phone Management</h1>
           <!-- Button Thêm mới -->
           <button
-            data-modal-toggle="modal"
-            data-modal-target="modal"
             id="openModalBtn"
             class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
@@ -110,7 +108,6 @@
               id="TenSP"
               class="w-full p-2 border border-gray-300 rounded mt-1"
               placeholder="Nhập tên sản phẩm"
-              required
             />
           </div>
 
@@ -151,27 +148,29 @@
           </div>
 
           <!-- Các nút -->
-          <div class="flex justify-between">
-            <button
-              id="closeModalBtn"
-              class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
-            >
-              Đóng
-            </button>
-            <button
-              class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-              onclick="createProduct()"
-            >
-              Thêm sản phẩm
-            </button>
-            <button
-              class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700"
-              onclick="updateProduct()"
-            >
-              Cập nhật
-            </button>
-          </div>
         </form>
+        <div class="flex justify-between">
+          <button
+            id="closeModalBtn"
+            class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
+          >
+            Đóng
+          </button>
+          <button
+            id="btnThemSanPham"
+            class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+            onclick="createProduct()"
+          >
+            Thêm sản phẩm
+          </button>
+          <button
+            id="btnCapNhatSanPham"
+            class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700"
+            onclick="updateProduct()"
+          >
+            Cập nhật
+          </button>
+        </div>
       </div>
     </div>
 
@@ -203,7 +202,7 @@
           ></a>
         </div>
       </div>
-
+      <hr class="mx-20">
       <div
         class="container mx-20 px-5 py-6 grid grid-cols-1 md:grid-cols-4 gap-4"
       >
@@ -246,6 +245,7 @@
           </ul>
         </div>
       </div>
+      <hr class="mx-20">
       <div>
         <p class="text-center py-2">
           &copy; 2021 Cyber Shop. All rights reserved.
@@ -260,6 +260,7 @@
         .getElementById("openModalBtn")
         .addEventListener("click", function () {
           document.getElementById("modal").classList.remove("hidden");
+          document.getElementById("btnCapNhatSanPham").classList.add("hidden");
         });
 
       // Đóng modal
@@ -267,6 +268,7 @@
         .getElementById("closeModalBtn")
         .addEventListener("click", function () {
           document.getElementById("modal").classList.add("hidden");
+          document.getElementById("btnCapNhatSanPham").classList.remove("hidden");
         });
     </script>
 
