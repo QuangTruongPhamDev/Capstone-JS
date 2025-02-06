@@ -42,7 +42,10 @@ let createProduct = () => {
     data: product,
   })
     .then(() => {
+      // gọi lại api lấy dữ liệu mới nhất từ server
       fetchProduct();
+      // reset form
+      document.querySelector("form").reset();
     })
     .catch((err) => {
       console.log(err);
@@ -88,8 +91,11 @@ let updateProduct = () => {
       // Tắt modal
       document.getElementById("modal").classList.add("hidden");
       document.getElementById("btnThemSanPham").classList.remove("hidden");
+      // Reset form
+      document.querySelector("form").reset();
       // Gọi lại api lấy dữ liệu mới nhất từ server
       fetchProduct();
+
       console.log("Sửa sản phẩm thành công: ", result);
     })
     .catch((error) => {

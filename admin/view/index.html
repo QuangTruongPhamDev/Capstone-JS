@@ -29,7 +29,7 @@
             <li>
               <a
                 href="#"
-                class="hover:text-gray-300 flex flex-col items-center"
+                class="hover:text-gray-300 ml-80 flex flex-col items-center"
               >
                 <i class="fa fa-home"></i>
                 <span>Home</span>
@@ -63,9 +63,11 @@
     <main class="container mx-auto px-4 py-6">
       <div class="bg-white shadow-md rounded-lg p-4 mx-20">
         <div class="flex justify-between items-center mb-4">
-          <h1 class="text-xl font-semibold text-gray-700">Phone Management</h1>
+          <h1 class="text-xl font-semibold text-gray-700">Shop Management</h1>
           <!-- Button Thêm mới -->
           <button
+            data-toggle="modal"
+            data-target="#modal"
             id="openModalBtn"
             class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
@@ -80,6 +82,7 @@
               <th class="border border-gray-200 px-4 py-2">Tên Sản Phẩm</th>
               <th class="border border-gray-200 px-4 py-2">Giá</th>
               <th class="border border-gray-200 px-4 py-2">Hình Ảnh</th>
+              <th class="border border-gray-200 px-4 py-2">Danh mục</th>
               <th class="border border-gray-200 px-4 py-2">Mô tả</th>
               <th class="border border-gray-200 px-4 py-2">Thao Tác</th>
             </tr>
@@ -130,6 +133,18 @@
               id="HinhSP"
               class="w-full p-2 border border-gray-300 rounded mt-1"
             />
+          </div>
+
+          <!-- Mô tả -->
+          <div class="mb-4">
+            <label for="MoTaSP" class="block text-sm font-semibold"
+              >Mô tả</label
+            >
+            <textarea
+              id="MoTaSP"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+              placeholder="Nhập mô tả sản phẩm"
+            ></textarea>
           </div>
 
           <!-- Loại sản phẩm -->
@@ -202,7 +217,7 @@
           ></a>
         </div>
       </div>
-      <hr class="mx-20">
+      <hr class="mx-20" />
       <div
         class="container mx-20 px-5 py-6 grid grid-cols-1 md:grid-cols-4 gap-4"
       >
@@ -245,7 +260,7 @@
           </ul>
         </div>
       </div>
-      <hr class="mx-20">
+      <hr class="mx-20" />
       <div>
         <p class="text-center py-2">
           &copy; 2021 Cyber Shop. All rights reserved.
@@ -268,7 +283,10 @@
         .getElementById("closeModalBtn")
         .addEventListener("click", function () {
           document.getElementById("modal").classList.add("hidden");
-          document.getElementById("btnCapNhatSanPham").classList.remove("hidden");
+          document
+            .getElementById("btnCapNhatSanPham")
+            .classList.remove("hidden");
+          document.querySelector("form").reset();
         });
     </script>
 
