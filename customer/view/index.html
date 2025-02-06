@@ -2,76 +2,170 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Card UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Product Showcase</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .heart-icon {
+            fill: white;
+            stroke: white;
+        }
+
+        .heart-icon.active {
+            fill: red;
+            stroke: red;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            width: 220px;
+            height: 450px;
+        }
+
+        .product-card .info {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: rgba(0,
+                    0,
+                    0,
+                    0.9);
+            /* Tạo nền mờ cho phần thông tin */
+            border-radius: 0 0 12px 12px;
+            z-index: 10;
+            /* Đảm bảo phần thông tin hiển thị trên cùng */
+        }
+
+        .product-card .content {
+            z-index: 5;
+            /* Đảm bảo tên sản phẩm và hình ảnh luôn ở trên cùng */
+        }
+
+        .product-card:hover .info {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 </head>
 
-<body
-    class="bg-gradient-to-r from-red-400 via-purple-500 to-pink-500 min-h-screen flex flex-col items-center justify-center">
+<body>
+    <header class="bg-gray-800 text-white">
+        <div class="mx-20 px-4 py-3 flex justify-between items-center">
+            <div class="text-3xl font-bold">
+                <i class="fab fa-github-alt"></i>
+                Cyber Shop
+            </div>
+            <nav>
+                <ul class="flex mx-auto space-x-4 text-lg">
+                    <li>
+                        <a href="#" class="hover:text-gray-300 flex flex-col items-center">
+                            <i class="fa fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:text-gray-300 flex flex-col items-center">
+                            <i class="fa fa-store"></i>
+                            <span>Admin</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Navbar -->
-    <div class="w-full flex justify-end p-4">
-        <button id="cart-icon" class="relative">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 6.6A2 2 0 007.6 21h8.8a2 2 0 002-1.4L17 13M9 21a1 1 0 110-2 1 1 0 010 2m6 0a1 1 0 110-2 1 1 0 010 2" />
-            </svg>
-            <span class="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full px-1">0</span>
-        </button>
-    </div>
+    <main
+        class="relative bg-gradient-to-br from-blue-500 via-teal-500 to-green-500 min-h-screen flex items-center justify-center">
+        <div id="productList" class="grid grid-cols-5 gap-6 max-w-7xl p-6">
+            <!-- Product Card -->
+            <div
+                class="relative bg-black text-white rounded-2xl shadow-lg overflow-hidden group product-card w-[200px] h-[300px] transition-all duration-300">
+                <!-- Product Content -->
+                <div class="content p-4">
+                    <div class="absolute top-4 left-4">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                            alt="Apple Logo" class="w-1 h-1">
+                    </div>
+                    <div class="absolute top-4 right-4 text-green-500 font-bold">In Stock</div>
+                    <div class="h-52 flex items-center justify-center">
+                        <img src="https://via.placeholder.com/150" alt="Airpods Pro" class="object-contain">
+                    </div>
+                    <h3 class="text-lg font-bold mt-4">Airpods Pro</h3>
+                </div>
 
-    <!-- Product Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-6">
-        <!-- Card Template -->
-        <div class="group relative bg-black rounded-lg shadow-lg overflow-hidden p-4">
-            <div class="absolute top-2 left-2 text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                <!-- Info Section (Hidden by default) -->
+                <div class="info">
+                    <h3 class="text-lg font-bold mt-4">Airpods Pro</h3>
+                    <p class="text-lg text-green-300">300$</p>
+                    <p class="text-sm text-white">Apple</p>
+                    <p class="text-sm text-gray-400">The best wireless earbuds for immersive sound.</p>
+                    <p class="text-sm text-gray-400">The best wireless earbuds for immersive sound.</p>
+                    <p class="text-sm text-gray-400">The best wireless earbuds for immersive sound.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="text-white heart-btn" onclick="toggleHeart(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 heart-icon">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+                        <button
+                            class="bg-black text-white px-3 py-1 text-sm rounded-full border border-white flex items-center gap-1">
+                            Add
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Additional Products Example -->
+            <!-- More product cards can be added similarly -->
+        </div>
+
+        <!-- Floating Cart Icon -->
+        <div class="absolute top-4 right-4">
+            <button class="relative text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 3h2l.4 2m0 0h15.2l1.4 7H6.4M5.4 5l-1 5m1-5h14.2m0 0L19 18.5M6.4 18.5h12.6m-12.6 0a2 2 0 11-4 0 2 2 0 014 0zm12.6 0a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-            </div>
-            <div class="flex justify-center items-center">
-                <img src="https://via.placeholder.com/150" alt="Product Image"
-                    class="h-40 object-cover group-hover:scale-105 transform transition-all duration-300">
-            </div>
-            <div class="text-center mt-4">
-                <h3 class="text-white font-semibold">Product Name</h3>
-                <p class="text-green-400 text-sm">In Stock</p>
-            </div>
+                <span
+                    class="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">0</span>
+            </button>
         </div>
-        <!-- Duplicate above for more products -->
-    </div>
-
-    <!-- Modal -->
-    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md">
-            <h2 class="text-xl font-semibold mb-4">Cart</h2>
-            <p class="text-gray-600 mb-4">Looks like you haven't added any product to the cart.</p>
-            <div class="flex justify-end space-x-4">
-                <button class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Close</button>
-                <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Clear Cart</button>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Modal Logic
-        const cartIcon = document.getElementById('cart-icon');
-        const cartModal = document.getElementById('cart-modal');
-
-        cartIcon.addEventListener('click', () => {
-            cartModal.classList.toggle('hidden');
-        });
-
-        cartModal.addEventListener('click', (e) => {
-            if (e.target === cartModal) {
-                cartModal.classList.add('hidden');
-            }
-        });
+        function toggleHeart(button) {
+            const icon = button.querySelector(".heart-icon");
+            icon.classList.toggle("active");
+        }
     </script>
+
+    <!-- cdn axios  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- controller -->
+    <script src="/customer/controller/customerController.js"></script>
+    <!-- my js -->
+    <script src="/customer/controller/customerIndex.js"></script>
 </body>
 
 </html>
