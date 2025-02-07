@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin and Store Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes gradient-border {
+            0% {
+                border-color: #ff9a9e;
+            }
+
+            25% {
+                border-color: #fad0c4;
+            }
+
+            50% {
+                border-color: #fbc2eb;
+            }
+
+            75% {
+                border-color: #a18cd1;
+            }
+
+            100% {
+                border-color: #ff9a9e;
+            }
+        }
+
+        .hover-border-animate {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hover-border-animate::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            border: 4px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .hover-border-animate:hover::before {
+            animation: gradient-border 2s infinite;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-cover bg-center flex items-center justify-center"
+    style="background-image: url('https://via.placeholder.com/1920x1080');">
+    <div class="flex space-x-72">
+        <!-- Admin Page -->
+        <a href="/admin/view/index.html" class="group text-center">
+            <div
+                class="w-64 h-64 rounded-full bg-white shadow-lg flex items-center justify-center transition-transform transform group-hover:scale-110 hover-border-animate">
+                <img src="https://via.placeholder.com/200" alt="Admin" class="rounded-full w-48 h-48">
+            </div>
+            <h2 class="mt-4 text-xl font-bold text-gray-500 group-hover:text-yellow-500 group-hover:underline">Admin Page</h2>
+        </a>
+
+        <!-- Store Page -->
+        <a href="/customer/view/index.html" class="group text-center">
+            <div
+                class="w-64 h-64 rounded-full bg-white shadow-lg flex items-center justify-center transition-transform transform group-hover:scale-110 hover-border-animate">
+                <img src="https://via.placeholder.com/200" alt="Store" class="rounded-full w-48 h-48">
+            </div>
+            <h2 class="mt-4 text-xl font-bold text-gray-500 group-hover:underline group-hover:text-yellow-500">Store Page</h2>
+        </a>
+    </div>
+</body>
+
+</html>

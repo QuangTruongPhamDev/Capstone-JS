@@ -29,7 +29,7 @@ let renderListSanPham = (productArr) => {
                         </button>
                         <button
                             onclick="addProductCart('${product.id}')"
-                            class="bg-black text-white px-3 py-1 text-sm rounded-full border border-white flex items-center gap-1">
+                            class="bg-black text-white px-3 py-1 text-sm rounded-full border border-white flex items-center gap-1 hover:bg-white hover:text-black">
                             Add
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 h-4">
