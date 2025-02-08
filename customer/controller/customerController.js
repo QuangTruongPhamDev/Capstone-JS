@@ -43,3 +43,8 @@ let renderListSanPham = (productArr) => {
   });
   document.getElementById("productList").innerHTML = contentHTML;
 };
+
+// Function tính tổng số lượng sản phẩm
+let getTotalQuantity = (cartItems) => {
+  return cartItems.reduce((total, item) => total + item.quantity, 0);
+};
