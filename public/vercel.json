@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/admin/view", "destination": "/admin/view/index.html" },
+    { "source": "/customer/view", "destination": "/customer/view/index.html" }
+  ]
+}
