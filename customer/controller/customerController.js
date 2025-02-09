@@ -48,3 +48,8 @@ let renderListSanPham = (productArr) => {
 let getTotalQuantity = (cartItems) => {
   return cartItems.reduce((total, item) => total + item.quantity, 0);
 };
+
+// Function tính tổng giá của tất cả sản phẩm trong giỏ hàng
+let getTotalAmount = (cartItems) => {
+  return cartItems.reduce((sum, item) => sum + (item.currentPrice || 0), 0);
+};
